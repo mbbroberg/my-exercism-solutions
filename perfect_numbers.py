@@ -1,27 +1,16 @@
 def classify(number):
-    try:
-        aliquot_sum = 0
-        aliquot_series = []
+    aliquot_sum = 0
 
-        if number < 1:
-            raise ValueError
+    if number < 1:
+        raise ValueError(f'An error occurred due to the value. Make sure number is greater than 0 (input was {number}).')
 
-        for n in range(1, number):
-            if number % n == 0:
-                aliquot_series.append(n)
-                aliquot_sum+=n
-        
-        if aliquot_sum == number:
-            return "perfect"
-        elif aliquot_sum > number:
-            return "abundant"
-        else:
-            return "deficient"
-        # print(f'sum is {aliquot_sum} with series {aliquot_series}')
-    except ValueError:
-        print(f'An unexpected error occurred due to the value. Make sure number is greater than 0. Input was {number}')
-    except:
-        print("Something errored. Sorry about that. Please try again.")
+    for n in range(1, number):
+        if number % n == 0:
+            aliquot_sum += n
 
-classify(-1)
-classify(10)
+    if aliquot_sum == number:
+        return "perfect"
+    elif aliquot_sum > number:
+        return "abundant"
+    else:
+        return "deficient"
