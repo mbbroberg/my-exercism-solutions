@@ -1,20 +1,31 @@
 class Matrix(object):
     """A simple columnar string parser"""
+
     matrix = []
 
     def __init__(self, matrix_string):
         self.matrix = matrix_string.split("\n")
         for n, row in enumerate(self.matrix):
-            self.matrix[n] = row.split(' ')
-        
+            self.matrix[n] = row.split(" ")
+
     def row(self, index):
-        pass
+        int_row = []
+        try:
+            for item in self.matrix[index - 1]:
+                int_row.append(int(item))
+            return int_row
+        except IndexError:
+            print(f"Row value {index} is out of range of the matrix.")
+        else:
+            print("Something went terribly wrong.")
 
     def column(self, index):
-        pass
-
-
-#  Matrix("1 2 3\n4 5 6\n7 8 9")
-#  self.assertEqual(matrix.column(3), [3, 6, 9])
-x = Matrix('1 2 3\n4 5 6\n7 8 9')
-# returns: [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']]
+        int_col = []
+        try:
+            for row in self.matrix:
+                int_col.append(int(row[index - 1]))
+            return int_col
+        except IndexError:
+            print(f"Column value {index} is out of range of the matrix.")
+        else:
+            print("Something went terribly wrong.")
